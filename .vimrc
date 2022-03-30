@@ -10,6 +10,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasr/molokai'
 Plug 'APZelos/blamer.nvim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
