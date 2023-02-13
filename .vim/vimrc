@@ -3,7 +3,7 @@ set autochdir
 set number               " show current line number
 set relativenumber
 set laststatus=2
-set statusline+=%F
+" set statusline+=%F
 
 " Color Theme
 set termguicolors
@@ -28,13 +28,23 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 let g:go_def_mapping_enabled = 0
 let g:go_metalinter_autosave = 1
 let g:go_list_type = 'locationlist'
+let g:go_doc_popup_window = 1
+" allows doHover to display instead of GoDoc since they're both mapped to K
+let g:go_doc_keywordprg_enabled = 0
 
 " turn to next or previous errors, after open location list
 nmap <leader>j :lnext<CR>
 nmap <leader>k :lprevious<CR>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" https://github.com/neoclide/coc.nvim
+set encoding=utf-8
+set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
+
+" autocmd User CocStatusChange redrawstatus
 
 "Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -59,6 +69,17 @@ inoremap <silent><expr> <Tab>
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install()}}

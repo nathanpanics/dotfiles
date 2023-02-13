@@ -115,6 +115,8 @@ alias events="go get -u github.com/moovfinancial/events@latest"
 alias mrclean="~/.executables/mrclean.sh"
 alias gaas="git add -u && git reset -- \*.swp"
 alias tmux="TERM=xterm-256color tmux"
+alias vmrc="vim ~/.vim/vimrc"
+alias coc="vim ~/.vim/coc-settings.json"
 
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 export LDFLAGS=-L/usr/local/opt/openssl/lib
