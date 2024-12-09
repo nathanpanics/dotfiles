@@ -1,8 +1,12 @@
+# dotfiles
+alias als="vim ~/github.com/nathanpanics/dotfiles/.aliases"
+alias dfs="cd ~/github.com/nathanpanics/dotfiles"
+alias zshrc="vim ~/github.com/nathanpanics/dotfiles/.zshrc"
+
 # git
 alias gaas="git add -u && git reset -- \*.swp"
 
 # navigation
-alias dfs="cd ~/github.com/nathanpanics/dotfiles"
 alias ggi="cd ~/github.com/getgrowit"
 
 # shell
