@@ -1,0 +1,11 @@
+# git
+alias gaas="git add -u && git reset -- \*.swp"
+
+# navigation
+alias dfs="cd ~/github.com/nathanpanics/dotfiles"
+alias ggi="cd ~/github.com/getgrowit"
+
+# shell
+alias coc="vim ~/.vim/coc-settings.json"
+alias tmux="TERM=xterm-256color tmux"
+alias vmrc="vim ~/.vim/vimrc"

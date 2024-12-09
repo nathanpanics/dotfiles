@@ -102,7 +102,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gaas="git add -u && git reset -- \*.swp"
-alias tmux="TERM=xterm-256color tmux"
-alias vmrc="vim ~/.vim/vimrc"
-alias coc="vim ~/.vim/coc-settings.json"
