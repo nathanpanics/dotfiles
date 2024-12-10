@@ -17,6 +17,7 @@ tap "homebrew/bundle"
 
 # packages
 brew "git"
+brew "python"
 brew "tmux"
 brew "vim"
 brew "zsh"
