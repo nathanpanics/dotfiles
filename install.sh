@@ -94,6 +94,16 @@ setup_zsh() {
     fi
 }
 
+setup_rust() {
+    title "Setting up Rust"
+
+    if test ! "$(command -v rustup)"; then
+        info "Installing Rustup..."
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    else
+	info "Rust already installed. Skipping..."
+    fi
+}
 
 case "$1" in
     help)
@@ -102,6 +112,9 @@ case "$1" in
 	;;
     homebrew)
         setup_homebrew
+	;;
+    rust)
+	setup_rust
 	;;
     symlinks)
 	setup_symlinks
