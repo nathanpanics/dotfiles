@@ -66,6 +66,10 @@ setup_homebrew() {
     else
 	info "Homebrew already installed. Skipping..."
     fi
+
+    # install brew dependencies from Brewfile
+    info "Installing brew bundle..."
+    brew bundle
 }
 
 setup_zsh() {
