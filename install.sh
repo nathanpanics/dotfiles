@@ -36,6 +36,10 @@ get_linkables() {
     find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
 }
 
+get_linkables_vim() {
+    find -H "$DOTFILES" -maxdepth 3 -name '*/vim/*'
+}
+
 setup_all() {
     setup_symlinks
     setup_homebrew
@@ -45,13 +49,32 @@ setup_all() {
 setup_symlinks() {
     title "Setting up symlinks"
 
-    for file in $(get_linkables) ; do
+    # create $HOME symlinks
+    for file in $(get_linkables); do
         target="$HOME/.$(basename "$file" '.symlink')"
 	if [ -e "$target" ]; then
-	    info "~${target#$HOME} already exists. Skipping...."
+	    info "~${target#$HOME} already exists. Skipping."
 	else
 	    info "Creating symlink for $file."
 	    ln -s "$file" "$target"
+	fi
+    done
+
+    VIMFILES=( 
+        "$HOME/.vim/autopair.vim:$DOTFILES/vim/autopair.vim"
+        "$HOME/.vim/coc-settings.json:$DOTFILES/vim/coc-settings.json"
+    )
+
+    FILES+=( "${VIMFILES[@]}" )
+
+    for file in "${FILES[@]}"; do
+        KEY=${file%%:*}
+        VALUE=${file#*:}
+        if [ -e "${KEY}" ]; then
+            info "$KEY already exists. Skipping."
+        else
+            info "Creating symlink for $KEY"
+            ln -s "${VALUE}" "${KEY}"
 	fi
     done
 }
@@ -64,7 +87,7 @@ setup_homebrew() {
 	# Run as a login shell (non-interactive) so that the script doesn't pause for user input
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
     else
-	info "Homebrew already installed. Skipping..."
+	info "Homebrew already installed. Skipping."
     fi
 
     # install brew dependencies from Brewfile
@@ -81,7 +104,7 @@ setup_zsh() {
 	info "Installing ZSH..."
 	brew install zsh
     else
-	info "ZSH already installed. Skipping..."
+	info "ZSH already installed. Skipping."
     fi	
 
     if test ! "$(command -v zsh)"; then
@@ -90,7 +113,7 @@ setup_zsh() {
 	info "Installing oh-my-zsh..."
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
-	info "Oh-My-ZSH already installed. Skipping..."
+	info "Oh-My-ZSH already installed. Skipping."
     fi
 }
 
@@ -101,7 +124,7 @@ setup_rust() {
         info "Installing Rustup..."
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     else
-	info "Rust already installed. Skipping..."
+	info "Rust already installed. Skipping."
     fi
 }
 
