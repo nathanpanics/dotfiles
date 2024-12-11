@@ -1,14 +1,24 @@
 {
-	"diagnostic.checkCurrentLine": true,
-	"diagnostic.refreshOnInsertMode": false,
-	"diagnostic.virtualText": false,
-	"diagnostic.virtualTextCurrentLineOnly": false,
-	"languageserver": {
-			"golang": {
-				"command": "gopls",
-				"rootPatterns": ["go.mod"],
-				"filetypes": ["go"]
-			}
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.virtualText": false,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
+        },
+	"rust": {
+	    "command": "rust-analyzer",
+	    "filetypes": ["rust"],
+	    "rootPatterns": ["Cargo.toml"]
 	},
-	"suggest.noselect": true
+	"sql": {
+            "module": "/path/to/node_modules/sql-language-server/dist/bin/cli.js",
+	    "args": ["up", "--method", "node-ipc"],
+                "filetypes": ["sql", "mysql"]
+        },
+    	"suggest.noselect": true
+    }
 }

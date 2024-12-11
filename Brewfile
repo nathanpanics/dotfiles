@@ -27,3 +27,6 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "zsh"
+
+# language-specific
+brew "rust-analyzer"
