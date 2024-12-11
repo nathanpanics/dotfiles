@@ -75,6 +75,9 @@ plugins=(git direnv docker docker-compose)
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -18,10 +18,12 @@ end
 tap "homebrew/bundle"
 
 # packages
+brew "fzf"
 brew "git"
 brew "direnv"
 brew "node"
 brew "python"
+brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "zsh"
