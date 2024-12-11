@@ -27,19 +27,15 @@
 
     " Color Theme and Fonts 
     " -----------------------------------------------------------------------------
-        set termguicolors
-        set t_Co=256
-        set background=dark
-        
         " Plug 'tomasr/molokai'
         Plug 'NLKNguyen/papercolor-theme'
 
-	" If fonts are not working install git@github.com:powerline/fonts.git
-        " Plug 'vim-airline/vim-airline'
-        " let g:airline_powerline_fonts = 1
-        
-        " Plug 'vim-airline/vim-airline-themes'
-        " let g:airline_theme='jellybeans'
+	" If fonts are not working:
+	" https://github.com/powerline/fonts/issues/208
+	" Preferences > Text > Non-ASCII Font = '12pt Meslo LG S Regular for
+	" Powerline'
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
     " -----------------------------------------------------------------------------
 
     " Completion Support
@@ -132,4 +128,16 @@
 call plug#end()
 " -----------------------------------------------------------------------------
 
-colorscheme PaperColor
+" Themes and Fonts
+" -----------------------------------------------------------------------------
+    if has('termguicolors')
+        set termguicolors
+    endif
+    set t_Co=256
+    set background=dark
+            
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme='papercolor'
+
+    colorscheme papercolor 
+" -----------------------------------------------------------------------------
