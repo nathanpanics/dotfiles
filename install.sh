@@ -36,10 +36,6 @@ get_linkables() {
     find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
 }
 
-get_linkables_vim() {
-    find -H "$DOTFILES" -maxdepth 3 -name '*/vim/*'
-}
-
 setup_all() {
     setup_symlinks
     setup_homebrew
