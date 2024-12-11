@@ -7,6 +7,8 @@ if OS.mac?
     # Dev
     cask "docker"
     cask "iterm2"
+    cask "ngrok"
+    cask "popsql"
     cask "postman"
     cask "visual-studio-code"
     cask "zed"
@@ -17,6 +19,8 @@ tap "homebrew/bundle"
 
 # packages
 brew "git"
+brew "direnv"
+brew "node"
 brew "python"
 brew "tmux"
 brew "vim"
