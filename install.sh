@@ -39,6 +39,7 @@ get_linkables() {
 setup_all() {
     setup_symlinks
     setup_homebrew
+    setup_tpm
     setup_zsh
 }
 
@@ -91,6 +92,17 @@ setup_homebrew() {
     brew bundle
 }
 
+setup_tpm() {
+    title "Setting up TPM"
+
+    if test ! "$(command -v git)"; then
+        warn "git command not installed. Skipping."
+    else
+	info "Installing TPM..."
+	git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+    fi
+}
+
 setup_zsh() {
     title "Setting up ZSH and oh-my-zsh"
 
@@ -137,6 +149,9 @@ case "$1" in
 	;;
     symlinks)
 	setup_symlinks
+	;;
+    tpm)
+	setup_tpm
 	;;
     zsh)
 	setup_zsh

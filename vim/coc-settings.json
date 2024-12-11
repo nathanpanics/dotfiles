@@ -1,5 +1,5 @@
 {
-    "diagnostic.checkCurrentLine": true,
+    "diagnostic.checkCurrentLine": false,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextCurrentLineOnly": false,
