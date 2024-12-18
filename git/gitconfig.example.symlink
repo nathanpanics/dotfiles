@@ -1,6 +1,7 @@
 [user]
+	name = EXAMPLE_NAME
 	email = EXAMPLE_EMAIL
-	signingkey = EXAMPLE_KEY_ID 
+	signingkey = EXAMPLE_KEY_ID
 [commit]
 	gpgsign = true
 [tag]
