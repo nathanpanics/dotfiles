@@ -57,7 +57,7 @@ setup_symlinks() {
 	fi
     done
 
-    VIMFILES=( 
+    VIMFILES=(
         "$HOME/.vim/autopair.vim:$DOTFILES/vim/autopair.vim"
         "$HOME/.vim/coc-settings.json:$DOTFILES/vim/coc-settings.json"
     )
@@ -113,7 +113,7 @@ setup_zsh() {
 	brew install zsh
     else
 	info "ZSH already installed. Skipping."
-    fi	
+    fi
 
     if test ! "$(command -v zsh)"; then
         warning "ZSH not installed. Please install ZSH before setting up oh-my-zsh."
@@ -122,6 +122,46 @@ setup_zsh() {
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
 	info "Oh-My-ZSH already installed. Skipping."
+    fi
+}
+
+setup_git() {
+    title "Setting up Git"
+
+    if test ! "$(command -v git)"; then
+        warning "git command not installed. Skipping git templates setup."
+        return
+    fi
+
+    TEMPLATE_SOURCE="$DOTFILES/git/git-templates"
+    TEMPLATE_DEST="$HOME/.git-templates"
+
+    if [ -d "$TEMPLATE_SOURCE" ]; then
+        info "Setting up git templates..."
+
+        # Remove existing template directory or symlink
+        if [ -e "$TEMPLATE_DEST" ]; then
+            info "Removing existing git templates..."
+            rm -rf "$TEMPLATE_DEST"
+        fi
+
+        # Create symlink
+        info "Creating symlink for git templates..."
+        ln -s "$TEMPLATE_SOURCE" "$TEMPLATE_DEST"
+
+        # Make hooks executable
+        if [ -d "$TEMPLATE_DEST/hooks" ]; then
+            info "Making hooks executable..."
+            chmod +x "$TEMPLATE_DEST/hooks/"*
+        fi
+
+        # Set global template directory
+        info "Setting global git template directory..."
+        git config --global init.templateDir "$TEMPLATE_DEST"
+
+        success "Git templates configured at $TEMPLATE_DEST"
+    else
+        warning "Git templates directory not found at $TEMPLATE_SOURCE"
     fi
 }
 
@@ -156,6 +196,9 @@ case "$1" in
     zsh)
 	setup_zsh
 	;;
+    git)
+    setup_git
+    ;;
     *)
 	setup_all
 	;;

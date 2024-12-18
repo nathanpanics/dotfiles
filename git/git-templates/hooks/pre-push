@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Get the current branch name
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
+
+# Check if we're on main or master
+if [[ "$CURRENT_BRANCH" == "main" || "$CURRENT_BRANCH" == "master" ]]; then
+    if [[ "$FORCE_PUSH" == "1" ]]; then
+        # Use /dev/tty to properly handle interactive input
+        exec < /dev/tty
+        echo "⚠️  Warning: Force pushing to $CURRENT_BRANCH branch!"
+        echo "⚠️  Are you sure? (y/N)"
+        read -r response
+        # Close /dev/tty
+        exec <&-
+        
+        if [[ "$response" != "y" && "$response" != "Y" ]]; then
+            echo "Push cancelled."
+            exit 1
+        fi
+    else
+        echo "❌ Direct pushing to $CURRENT_BRANCH branch is not allowed!"
+        echo "Please create a feature branch and make a pull request."
+        echo "To override this, use: FORCE_PUSH=1 git push"
+        exit 1
+    fi
+fi
+
+# Only run cargo build if this is a Rust project
+if [ -f "Cargo.toml" ]; then
+    # Check if FORCE_PUSH environment variable is set or --force flag is used
+    if [[ "$FORCE_PUSH" == "1" ]]; then
+        echo "⚠️  Warning: Force push enabled. Skipping build checks..."
+        exit 0
+    fi
+
+    echo "Running pre-push checks..."
+
+    # Run cargo build
+    echo "📦 Running cargo build..."
+    cargo build
+    if [ $? -ne 0 ]; then
+        echo "❌ cargo build failed."
+        echo "To push anyway, you can:"
+        echo "1. Use: FORCE_PUSH=1 git push"
+        echo "2. Use: git push --force-with-lease"
+        exit 1
+    fi
+
+    echo "✅ Build passed. Proceeding with push."
+fi
+
+exit 0
