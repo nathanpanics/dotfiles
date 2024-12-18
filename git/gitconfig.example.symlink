@@ -1,0 +1,9 @@
+[user]
+	email = EXAMPLE_EMAIL
+	signingkey = EXAMPLE_KEY_ID 
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[init]
+	templateDir = PATH_TO_GIT_TEMPLATES
