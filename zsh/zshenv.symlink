@@ -1,4 +1,4 @@
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # GPG_TTY is an environment variable used by GNU Privacy Guard (GPG) to detect the current TTY (Terminal) device for interactive shell sessions. This variable is required for GPG to pop up a passphrase input prompt when needed.
 GPG_TTY=$(tty)

@@ -117,7 +117,7 @@ setup_zsh() {
 
     if test ! "$(command -v zsh)"; then
         warning "ZSH not installed. Please install ZSH before setting up oh-my-zsh."
-    elif test ! "$HOME/.oh-my-zsh"; then
+    elif test ! -d "$HOME/.oh-my-zsh"; then
 	info "Installing oh-my-zsh..."
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
