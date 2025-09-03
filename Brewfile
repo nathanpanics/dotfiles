@@ -1,16 +1,12 @@
 if OS.mac?
     # Applications
     cask "brave-browser"
-    # cask "deezer"
-    # cask "slack"
 
     # Dev
     cask "iterm2"
     cask "ngrok"
-    # cask "popsql"
     cask "postman"
     cask "visual-studio-code"
-    # cask "zed"
 
 end
 
@@ -24,6 +20,3 @@ brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "zsh"
-
-# language-specific
-brew "rust-analyzer"
